@@ -1,0 +1,61 @@
+import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
+import 'package:intl/intl.dart';
+
+final formatter = DateFormat.yMMMd();
+const uuid = Uuid();
+
+enum Category { food, travel, leisure, work }
+
+const categoryIcons = {
+  Category.food: Icons.lunch_dining,
+  Category.travel: Icons.flight_takeoff,
+  Category.work: Icons.work,
+  Category.leisure: Icons.movie,
+};
+
+class Expense {
+  Expense({
+    required this.title,
+    required this.amount,
+    required this.date,
+    required this.category,
+  }) : id = uuid.v4();
+
+  final String id;
+  final String title;
+  final double amount;
+  final DateTime date;
+  final Category category;
+
+  String get formattedDate {
+    return formatter.format(date);
+  }
+}
+
+class ExpenseBucket {
+  //CONSTRUCTOR
+  ExpenseBucket({
+    required this.category,
+    required this.expenses,
+  });
+
+  ExpenseBucket.forCategory(List<Expense> allExpenses, this.category)
+    : expenses = allExpenses
+          .where((expense) => expense.category == category)
+          .toList();
+
+  // C L A S S    V A R I A B L E S
+  final Category category;
+  final List<Expense> expenses;
+
+  // C L A S S    M E T H O D S
+  double get totalExpenses {
+    double sum = 0;
+
+    for (final expense in expenses) {
+      sum += expense.amount;
+    }
+    return sum;
+  }
+}
