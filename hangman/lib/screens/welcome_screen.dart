@@ -11,7 +11,7 @@ class WelcomeScreen extends StatefulWidget {
 class _WelcomeScreenState extends State<WelcomeScreen> {
   // C L A S S     M E T H O D S
   void _goNextPage() {
-    Navigator.push(
+    Navigator.pushReplacement(
       context,
       MaterialPageRoute(
         builder: (ctx) => const PlayPage(),
@@ -45,17 +45,20 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
               const SizedBox(height: 16),
 
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.lightBlue,
-                  elevation: 3,
-                ),
-                onPressed: _goNextPage,
-                child: const Text(
-                  'Play',
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.black,
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.lightBlue,
+                    elevation: 3,
+                  ),
+                  onPressed: _goNextPage,
+                  child: const Text(
+                    'Play',
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
               ),

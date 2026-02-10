@@ -3,7 +3,7 @@ import 'dart:math';
 
 String getWord() {
   String word = words.elementAt(Random().nextInt(words.length));
-  return word;
+  return word.toLowerCase();
 }
 
 // W O R D     L I S T
